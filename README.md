@@ -56,3 +56,17 @@ function back(str){
   return str.split('').reverse().join('');
 }
 ```
+5. 数组去重
+```javascript 
+function unique(arr){
+  var data = [];
+  var hash = {};
+  for(var i=0;i<arr.length;i++){
+    if(!hash[arr[i]]){
+      hash[arr[i]] = true;
+      data.push(arr[i]);
+    }
+  }
+  return data;
+}
+```
