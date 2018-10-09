@@ -48,7 +48,11 @@ function deepCopy(Obj){
     return Obj;
   }
 }
-
-
-
+```
+4. 回文
+```javascript
+// reverse 是数组的方法
+function back(str){
+  return str.split('').reverse().join('');
+}
 ```

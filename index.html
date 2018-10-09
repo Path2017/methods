@@ -50,6 +50,17 @@
             return Obj;
         }
     }
+    // 回文
+    /*
+     回文是指把相同的词汇或句子，在下文中调换位置或颠倒过来，产生收尾回环的情况，也叫回环。
+     如：mamam,redivider.
+    
+    实现回文不是我们最常用到的for循环，而是reverse的运用。
+    将字符串转化为数组，将数组顺序颠倒后，再转化为字符串，这个过程就实现的回文。
+    */
+    function back(str) {
+        return str.split('').reverse().join('');
+    }
 </script>
 
 </html>
