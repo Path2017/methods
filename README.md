@@ -70,3 +70,64 @@ function unique(arr){
   return data;
 }
 ```
+6. 统计字符串中出现最多的字母
+```javascript
+function findMax(str){
+  if(str.length == 1){
+    return str
+  }
+  var charObj = {};
+  for(var i =0;i<str.length;i++){
+    if(!charObj[str.charAt(i)]){
+      charObj[str.charAt(i)] = 1;
+    }else{
+      charObj[str.charAt(i)] += 1;
+    }
+  }
+  var charMax = '';
+  var charValue = 1;
+  for(var k in charObj){
+    if(charObj[k]>=charValue){
+      charMax = k;
+      charValue = charObj[k];
+    }
+  }
+  return charMax;
+}
+```
+7. 冒泡排序 -- 从小到大排序
+```javascript
+function buble(arr){
+  for(var i=0;i<arr.length-1;i++){
+    for(var j=0;j<arr.length-i-1;j++){
+      if(arr[j]>arr[j+1]){
+        var temp = arr[j+1];
+        arr[j+1] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+  return arr;
+}
+```
+8. 快速排序
+```javascript
+function quick(arr){
+  if(arr.length<=1){
+    return arr;
+  }
+  var leftarr =[];
+  var rightarr = [];
+  // 取中间值索引号
+  var midindex = Math.floor(arr.length/2);
+  var midvalue = arr.splice(midindex,1)[0];
+  for(var i=0;i<arr.length;i++){
+    if(arr[i]<midvalue){
+      leftarr.push(arr[i]);
+    }else{
+      rightarr.push(arr[i]);
+    }
+  }
+  return quick(leftarr).concat([midvalue],quick(rightarr))
+}
+```
