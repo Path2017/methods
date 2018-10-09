@@ -131,3 +131,12 @@ function quick(arr){
   return quick(leftarr).concat([midvalue],quick(rightarr))
 }
 ```
+9. 不需要借助第三个临时变量，实现两个变量的交换
+```javascript
+function swap(a,b){
+  b = b - a;
+  a = a + b;
+  b = a - b;
+  return [a,b];
+}
+```
