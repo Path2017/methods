@@ -160,6 +160,26 @@
         }
         return result;
     }
+    // 函数节流做法
+    // 例如 onscroll 时方法 scrollFn一直会执行 影响性能
+    function scrollFn() {
+        console.log(1)
+    }
+    window.onscroll = scrollFn
+        // 函数节流
+    function scrollFn() {
+        console.log(1)
+    }
+    // method 为需要执行的方法 context为运行环境
+    function throttle(method, context) {
+        clearTimeout(method.tId);
+        method.tId = setTimeout(function() {
+            method.call(context)
+        }, 300)
+    }
+    window.onscroll = function() {
+        throttle(scrollFn)
+    }
 </script>
 
 </html>

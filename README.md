@@ -157,3 +157,25 @@ function fib(n){
   return res;
 }
 ```
+11. 函数节流
+```javascript
+// 未节流的函数执行
+function scrollFn(){
+  console.log(12)
+}
+window.onscroll = scrollFn; // 会一直输出影响性能
+
+// 节流
+function scrollFn(){
+  console.log(12)
+}
+function throllte(method,context){
+  clearTimeout(method.tId);
+  method.tId = setTimeout(function(){
+    method.call(context);
+  },300);
+}
+window.onscroll = function(){
+  throllte(scrollFn);
+}
+```
