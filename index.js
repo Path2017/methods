@@ -77,3 +77,42 @@ function maxValue(str) {
     }
     return maxValue;
 }
+
+function maxValue(str) {
+    if (str.length <= 1) {
+        return str;
+    }
+    var list = {};
+    for (var i = 0; i < str.length; i++) {
+        if (!list[str.charAt(i)]) {
+            list[str.charAt(i)] = 1;
+        } else {
+            list[str.charAt(i)] += 1;
+        }
+    }
+    var maxValue = '';
+    var maxNum = 1;
+    for (var k in list) {
+        if (maxNum <= list[k]) {
+            maxValue = k;
+            maxNum = list[k];
+        }
+    }
+    return maxValue;
+}
+// 冒泡排序
+function buble(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    for (var i = 0; i < arr.length - 1; i++) {
+        for (var j = 1; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                var temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    return arr;
+}
