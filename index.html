@@ -136,6 +136,30 @@
         b = a - b;
         return [a, b]
     }
+    // 找出下列正整数组的最大差值
+    function maxDis(arr) {
+        if (arr.length < 1) {
+            return 0;
+        }
+        var maxNum = arr[0];
+        var minNum = arr[0];
+        for (var i = 0; i < arr.length; i++) {
+            maxNum = Math.max(arr[i], maxNum);
+            minNum = Math.min(arr[i], minNum);
+        }
+        return (maxNum - minNum)
+    }
+    // 随机生成指定长度的字符串
+    function randomStr(n) {
+        var str = 'abcdefghijklmnopqrstuvwxyz1234567890';
+        var l = str.length;
+        var result = '';
+        for (var i = 0; i <= n - 1; i++) {
+            var num = Math.floor(Math.random() * l);
+            result += str.charAt(num);
+        }
+        return result;
+    }
 </script>
 
 </html>
