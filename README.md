@@ -110,7 +110,7 @@ function buble(arr){
   return arr;
 }
 ```
-8. 快速排序
+8. 快速排序
 ```javascript
 function quick(arr){
   if(arr.length<=1){
@@ -138,5 +138,22 @@ function swap(a,b){
   a = a + b;
   b = a - b;
   return [a,b];
+}
+```
+10. 斐波那契数列
+```javascript
+// 方法1：递归
+function fib(n){
+  var res = [1,1];
+  if(n==1){
+    return [1]
+  }else if(n==2){
+    return [1,1]
+  }else{
+    for(var i=2;i<n;i++){
+      res[i] = res[i-1]+res[i-2];
+    }
+  }
+  return res;
 }
 ```
