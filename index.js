@@ -42,3 +42,38 @@ function deepCopy(Obj) {
         return Obj;
     }
 }
+//  数组去重
+function unique(arr) {
+    var data = [];
+    var hash = {};
+    for (var i = 0; i < arr.length; i++) {
+        if (!hash[arr[i]]) {
+            hash[arr[i]] = true;
+            data.push(arr[i]);
+        }
+    }
+    return data;
+}
+// 统计字符串中出现最多的字
+function maxValue(str) {
+    if (str.length <= 1) {
+        return str;
+    }
+    var list = {};
+    for (var i = 0; i < str.length; i++) {
+        if (!list[str.charAt(i)]) {
+            list[str.charAt(i)] = 1;
+        } else {
+            list[str.charAt(i)] += 1;
+        }
+    }
+    var maxValue = '';
+    var maxNum = 1;
+    for (var k in list) {
+        if (maxNum <= list[k]) {
+            maxValue = k;
+            maxNum = list[k];
+        }
+    }
+    return maxValue;
+}
