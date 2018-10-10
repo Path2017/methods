@@ -116,3 +116,42 @@ function buble(arr) {
     }
     return arr;
 }
+// 快速排序
+function quick(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    var midIndex = Math.floor(arr.length / 2);
+    var midValue = arr.splice(midIndex, 1)[0];
+    var leftArr = [];
+    var rightArr = [];
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] <= midValue) {
+            leftArr.push(arr[i]);
+        } else {
+            rightArr.push(arr[i]);
+        }
+    }
+    return quick(leftArr).concat([midValue], quick(rightArr));
+}
+// 不借助其他变量实现两个参数交换
+function swap(a, b) {
+    b = b - a;
+    a = a + b;
+    b = a - b;
+    return [a, b];
+}
+// 斐波那契数列
+function fib(n) {
+    var res = [1, 1];
+    if (n == 1) {
+        return 1;
+    } else if (n == 2) {
+        return [1, 1];
+    } else {
+        for (var i = 2; i < n; i++) {
+            res[i] = res[i - 1] + res[i - 2];
+        }
+    }
+    return res;
+}
