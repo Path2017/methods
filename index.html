@@ -180,6 +180,50 @@
     window.onscroll = function() {
         throttle(scrollFn)
     }
+
+    //  合并两个有序数组 如 ［1,2,3,5,6］[2,3,4,7]
+    // 结果为 [1,2,2,3,3,4,5,6,7]
+    function mergeArray(arr1, arr2) {
+        var index1 = 0;
+        var index2 = 0;
+        var arr = [];
+        while (index1 < arr1.length && index2 < arr2.length) {
+            if (arr1[index1] < arr2[index2]) {
+                arr.push(arr1[index1]);
+                index1++;
+            } else {
+                arr.push(arr2[index2]);
+                index2++;
+            }
+        }
+        while (index1 < arr1.length) {
+            arr.push(arr1[index1]);
+            index1++;
+        }
+        while (index2 < arr2.length) {
+            arr.push(arr2[index2]);
+            index2++;
+        }
+        return arr;
+    }
+    //  二分查找
+    function binarySearch(arr, target) {
+        var h = arr.length - 1;
+        var l = 0;
+        while (l <= h) {
+            var mid = Math.floor((h - l) / 2);
+            if (arr[mid] == target) {
+                return arr[mid];
+            }
+            if (target > arr[mid]) {
+                l = m + 1;
+            }
+            if (target < arr[mid]) {
+                h = m - 1;
+            }
+        }
+        return -1;
+    }
 </script>
 
 </html>
