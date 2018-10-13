@@ -2,228 +2,228 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
 
 <body>
 
 </body>
 <script>
-    // 阻止事件冒泡
-    function stopBuble(e) {
-        var ev = e || window.event;
-        if (ev.stopPropagation) {
-            ev.stopPropagation();
-        } else {
-            ev.cancelBuble = true;
-        }
+  // 阻止事件冒泡
+  function stopBuble(e) {
+    var ev = e || window.event;
+    if (ev.stopPropagation) {
+      ev.stopPropagation();
+    } else {
+      ev.cancelBuble = true;
     }
-    // 阻止默认行为
-    function stopDefault(e) {
-        var ev = e || window.event;
-        if (ev.preventDefault) {
-            ev.preventDefault();
-        } else {
-            ev.returnValue = false;
-        }
+  }
+  // 阻止默认行为
+  function stopDefault(e) {
+    var ev = e || window.event;
+    if (ev.preventDefault) {
+      ev.preventDefault();
+    } else {
+      ev.returnValue = false;
     }
-    // js对象的深度拷贝
-    function clone(Obj) {
-        var buf;
-        if (Obj instanceof Array) {
-            buf = [];
-            var i = Obj.length;
-            while (i--) {
-                buf[i] = clone(Obj[i]);
-            }
-            return buf;
-        } else if (Obj instanceof Object) {
-            buf = {};
-            for (var k in Obj) {
-                buf[k] = clone(Obj[k]);
-            }
-            return buf;
-        } else {
-            return Obj;
-        }
+  }
+  // js对象的深度拷贝
+  function clone(Obj) {
+    var buf;
+    if (Obj instanceof Array) {
+      buf = [];
+      var i = Obj.length;
+      while (i--) {
+        buf[i] = clone(Obj[i]);
+      }
+      return buf;
+    } else if (Obj instanceof Object) {
+      buf = {};
+      for (var k in Obj) {
+        buf[k] = clone(Obj[k]);
+      }
+      return buf;
+    } else {
+      return Obj;
     }
-    // 回文
-    /*
-     回文是指把相同的词汇或句子，在下文中调换位置或颠倒过来，产生收尾回环的情况，也叫回环。
-     如：mamam,redivider.
-    
-    实现回文不是我们最常用到的for循环，而是reverse的运用。
-    将字符串转化为数组，将数组顺序颠倒后，再转化为字符串，这个过程就实现的回文。
-    */
-    function back(str) {
-        return str.split('').reverse().join('');
+  }
+  // 回文
+  /*
+   回文是指把相同的词汇或句子，在下文中调换位置或颠倒过来，产生收尾回环的情况，也叫回环。
+   如：mamam,redivider.
+  
+  实现回文不是我们最常用到的for循环，而是reverse的运用。
+  将字符串转化为数组，将数组顺序颠倒后，再转化为字符串，这个过程就实现的回文。
+  */
+  function back(str) {
+    return str.split('').reverse().join('');
+  }
+  // 去掉一组整型数组中重复的值
+  function unique(arr) {
+    var data = [];
+    var hash = {};
+    for (var i = 0; i < arr.length; i++) {
+      if (!hash[arr[i]]) {
+        hash[arr[i]] = true;
+        data.push(arr[i]);
+      }
     }
-    // 去掉一组整型数组中重复的值
-    function unique(arr) {
-        var data = [];
-        var hash = {};
-        for (var i = 0; i < arr.length; i++) {
-            if (!hash[arr[i]]) {
-                hash[arr[i]] = true;
-                data.push(arr[i]);
-            }
-        }
-        return data;
+    return data;
+  }
+  // 统计一个字符串中出现最多的字母
+  function findMax(str) {
+    if (str.length == 1) {
+      return str;
     }
-    // 统计一个字符串中出现最多的字母
-    function findMax(str) {
-        if (str.length == 1) {
-            return str;
-        }
-        var charObj = {};
-        for (var i = 0; i < str.length; i++) {
-            if (!charObj[str.charAt(i)]) {
-                charObj[str.charAt(i)] = 1;
-            } else {
-                charObj[str.charAt(i)] += 1;
-            }
-        }
-
-        var maxChar = '';
-        var maxValue = 1;
-        for (var k in charObj) {
-            if (charObj[k] >= maxValue) {
-                maxChar = k;
-                maxValue = charObj[k];
-            }
-        }
-        return maxChar
-    }
-    // 顺序算法
-    // 冒泡排序
-    function bubble(arr) {
-        for (var i = 0; i < arr.length - 1; i++) {
-            for (var j = 0; j < arr.length - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    var tem = arr[j + 1];
-                    arr[j + 1] = arr[j];
-                    arr[j] = tem;
-                }
-            }
-        }
-        return arr;
-    }
-    // 快速排序
-    function quick(arr) {
-        if (arr.length <= 1) {
-            return arr;
-        }
-        var leftArr = [];
-        var rightArr = [];
-        var midIndex = Math.floor(arr.length / 2);
-        var midValue = arr.splice(midIndex, 1)[0];
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i] < midValue) {
-                leftArr.push(arr[i]);
-            } else {
-                rightArr.push(arr[i]);
-            }
-        }
-        return quick(leftArr).concat([midValue], quick(rightArr));
-    }
-    // 不需要借助第三个临时变量，实现两个变量的交换
-    function swap(a, b) {
-        b = b - a;
-        a = a + b;
-        b = a - b;
-        return [a, b]
-    }
-    // 找出下列正整数组的最大差值
-    function maxDis(arr) {
-        if (arr.length < 1) {
-            return 0;
-        }
-        var maxNum = arr[0];
-        var minNum = arr[0];
-        for (var i = 0; i < arr.length; i++) {
-            maxNum = Math.max(arr[i], maxNum);
-            minNum = Math.min(arr[i], minNum);
-        }
-        return (maxNum - minNum)
-    }
-    // 随机生成指定长度的字符串
-    function randomStr(n) {
-        var str = 'abcdefghijklmnopqrstuvwxyz1234567890';
-        var l = str.length;
-        var result = '';
-        for (var i = 0; i <= n - 1; i++) {
-            var num = Math.floor(Math.random() * l);
-            result += str.charAt(num);
-        }
-        return result;
-    }
-    // 函数节流做法
-    // 例如 onscroll 时方法 scrollFn一直会执行 影响性能
-    function scrollFn() {
-        console.log(1)
-    }
-    window.onscroll = scrollFn
-        // 函数节流
-    function scrollFn() {
-        console.log(1)
-    }
-    // method 为需要执行的方法 context为运行环境
-    function throttle(method, context) {
-        clearTimeout(method.tId);
-        method.tId = setTimeout(function() {
-            method.call(context)
-        }, 300)
-    }
-    window.onscroll = function() {
-        throttle(scrollFn)
+    var charObj = {};
+    for (var i = 0; i < str.length; i++) {
+      if (!charObj[str.charAt(i)]) {
+        charObj[str.charAt(i)] = 1;
+      } else {
+        charObj[str.charAt(i)] += 1;
+      }
     }
 
-    //  合并两个有序数组 如 ［1,2,3,5,6］[2,3,4,7]
-    // 结果为 [1,2,2,3,3,4,5,6,7]
-    function mergeArray(arr1, arr2) {
-        var index1 = 0;
-        var index2 = 0;
-        var arr = [];
-        while (index1 < arr1.length && index2 < arr2.length) {
-            if (arr1[index1] < arr2[index2]) {
-                arr.push(arr1[index1]);
-                index1++;
-            } else {
-                arr.push(arr2[index2]);
-                index2++;
-            }
-        }
-        while (index1 < arr1.length) {
-            arr.push(arr1[index1]);
-            index1++;
-        }
-        while (index2 < arr2.length) {
-            arr.push(arr2[index2]);
-            index2++;
-        }
-        return arr;
+    var maxChar = '';
+    var maxValue = 1;
+    for (var k in charObj) {
+      if (charObj[k] >= maxValue) {
+        maxChar = k;
+        maxValue = charObj[k];
+      }
     }
-    //  二分查找
-    function binarySearch(arr, target) {
-        var h = arr.length - 1;
-        var l = 0;
-        while (l <= h) {
-            var mid = Math.floor((h - l) / 2);
-            if (arr[mid] == target) {
-                return arr[mid];
-            }
-            if (target > arr[mid]) {
-                l = m + 1;
-            }
-            if (target < arr[mid]) {
-                h = m - 1;
-            }
+    return maxChar
+  }
+  // 顺序算法
+  // 冒泡排序
+  function bubble(arr) {
+    for (var i = 0; i < arr.length - 1; i++) {
+      for (var j = 0; j < arr.length - i - 1; j++) {
+        if (arr[j] > arr[j + 1]) {
+          var tem = arr[j + 1];
+          arr[j + 1] = arr[j];
+          arr[j] = tem;
         }
-        return -1;
+      }
     }
+    return arr;
+  }
+  // 快速排序
+  function quick(arr) {
+    if (arr.length <= 1) {
+      return arr;
+    }
+    var leftArr = [];
+    var rightArr = [];
+    var midIndex = Math.floor(arr.length / 2);
+    var midValue = arr.splice(midIndex, 1)[0];
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] < midValue) {
+        leftArr.push(arr[i]);
+      } else {
+        rightArr.push(arr[i]);
+      }
+    }
+    return quick(leftArr).concat([midValue], quick(rightArr));
+  }
+  // 不需要借助第三个临时变量，实现两个变量的交换
+  function swap(a, b) {
+    b = b - a;
+    a = a + b;
+    b = a - b;
+    return [a, b]
+  }
+  // 找出下列正整数组的最大差值
+  function maxDis(arr) {
+    if (arr.length < 1) {
+      return 0;
+    }
+    var maxNum = arr[0];
+    var minNum = arr[0];
+    for (var i = 0; i < arr.length; i++) {
+      maxNum = Math.max(arr[i], maxNum);
+      minNum = Math.min(arr[i], minNum);
+    }
+    return (maxNum - minNum)
+  }
+  // 随机生成指定长度的字符串
+  function randomStr(n) {
+    var str = 'abcdefghijklmnopqrstuvwxyz1234567890';
+    var l = str.length;
+    var result = '';
+    for (var i = 0; i <= n - 1; i++) {
+      var num = Math.floor(Math.random() * l);
+      result += str.charAt(num);
+    }
+    return result;
+  }
+  // 函数节流做法
+  // 例如 onscroll 时方法 scrollFn一直会执行 影响性能
+  function scrollFn() {
+    console.log(1)
+  }
+  window.onscroll = scrollFn
+  // 函数节流
+  function scrollFn() {
+    console.log(1)
+  }
+  // method 为需要执行的方法 context为运行环境
+  function throttle(method, context) {
+    clearTimeout(method.tId);
+    method.tId = setTimeout(function () {
+      method.call(context)
+    }, 300)
+  }
+  window.onscroll = function () {
+    throttle(scrollFn)
+  }
+
+  //  合并两个有序数组 如 ［1,2,3,5,6］[2,3,4,7]
+  // 结果为 [1,2,2,3,3,4,5,6,7]
+  function mergeArray(arr1, arr2) {
+    var index1 = 0;
+    var index2 = 0;
+    var arr = [];
+    while (index1 < arr1.length && index2 < arr2.length) {
+      if (arr1[index1] < arr2[index2]) {
+        arr.push(arr1[index1]);
+        index1++;
+      } else {
+        arr.push(arr2[index2]);
+        index2++;
+      }
+    }
+    while (index1 < arr1.length) {
+      arr.push(arr1[index1]);
+      index1++;
+    }
+    while (index2 < arr2.length) {
+      arr.push(arr2[index2]);
+      index2++;
+    }
+    return arr;
+  }
+  //  二分查找
+  function binarySearch(arr, target) {
+    var h = arr.length - 1;
+    var l = 0;
+    while (l <= h) {
+      var mid = Math.floor((h - l) / 2);
+      if (arr[mid] == target) {
+        return arr[mid];
+      }
+      if (target > arr[mid]) {
+        l = m + 1;
+      }
+      if (target < arr[mid]) {
+        h = m - 1;
+      }
+    }
+    return -1;
+  }
 </script>
 
 </html>
